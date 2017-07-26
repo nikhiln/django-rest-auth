@@ -112,10 +112,10 @@ class LogoutView(APIView):
 
         return self.finalize_response(request, response, *args, **kwargs)
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         return self.logout(request)
 
-    def logout(self, request):
+    def logout(self, request, **kwargs):
         try:
             request.user.auth_token.delete()
         except (AttributeError, ObjectDoesNotExist):
@@ -192,7 +192,7 @@ class PasswordResetConfirmView(GenericAPIView):
     def dispatch(self, *args, **kwargs):
         return super(PasswordResetConfirmView, self).dispatch(*args, **kwargs)
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
