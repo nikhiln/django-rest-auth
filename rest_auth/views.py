@@ -215,7 +215,7 @@ class PasswordChangeView(GenericAPIView):
     def dispatch(self, *args, **kwargs):
         return super(PasswordChangeView, self).dispatch(*args, **kwargs)
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
