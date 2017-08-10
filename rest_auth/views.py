@@ -190,6 +190,7 @@ class PasswordResetConfirmView(GenericAPIView):
 
     @sensitive_post_parameters_m
     def dispatch(self, *args, **kwargs):
+        kwargs.pop('tenant')
         return super(PasswordResetConfirmView, self).dispatch(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -213,6 +214,7 @@ class PasswordChangeView(GenericAPIView):
 
     @sensitive_post_parameters_m
     def dispatch(self, *args, **kwargs):
+        kwargs.pop('tenant')
         return super(PasswordChangeView, self).dispatch(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
